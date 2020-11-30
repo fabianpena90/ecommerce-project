@@ -80,9 +80,9 @@ const OrderScreen = ({ match, history }) => {
     
     return loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (<>
         <h1>Order {order?._id}</h1>
-        <Row>
+        <Row> 
             <Col md={8}>
-                <ListGroup variant='flush'>
+                <ListGroup variant='flush'> 
                     <ListGroup.Item>
                         <h2>Shipping</h2>
                         <p><strong>Name: </strong> {order.user.name}</p>
