@@ -59,12 +59,13 @@ const OrderScreen = ({ match }) => {
     }, [dispatch, orderId, successPay, order])
 
     const successPaymentHandler = (paymentResult) => {
+        console.log(paymentResult)
         dispatch(payOrder(orderId, paymentResult))
     }
 
     
     return loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (<>
-        <h1>Order {order._id}</h1>
+        <h1>Order {order?._id}</h1>
         <Row>
             <Col md={8}>
                 <ListGroup variant='flush'>
@@ -149,8 +150,13 @@ const OrderScreen = ({ match }) => {
                         {!order.isPaid && (
                             <ListGroup.Item>
                                 {loadingPay && <Loader />}
-                                {!sdkReady ? <Loader /> : (
-                                    <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} />
+                                {!sdkReady ? (
+                                    <Loader />
+                                ) : (
+                                    <PayPalButton
+                                    amount={order.totalPrice}
+                                    onSuccess={successPaymentHandler}
+                                    />
                                 )}
                             </ListGroup.Item>
                         )}
